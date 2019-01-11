@@ -23,10 +23,9 @@ while True:
     if STICKS_CHOSEN > 4 or STICKS_CHOSEN < 1:
         print("Duh, wrong choice!")
         continue
-    STICKS -= STICKS_CHOSEN
     CHOICE = randint(1,4)
     print(f"Computer chose {CHOICE} stick(s).")
-    STICKS -= CHOICE
+    STICKS -= (STICKS_CHOSEN + CHOICE)
     if STICKS <= 1:
         print("Yay, you won! :D")
         break
