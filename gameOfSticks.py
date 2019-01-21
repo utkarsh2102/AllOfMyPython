@@ -1,6 +1,3 @@
-#! /usr/bin/env python3
-
-from __future__ import print_function
 from random import randint
 
 """
@@ -11,21 +8,30 @@ You'll be playing against the computer.
 
 STICKS = 21
 
-print("There are 21 sticks, you make pick any number of stick(s) from 1-4.")
-print("The one who picks the last stick loses.")
+print("There are 21 sticks, you make pick any number of stick(s) from 1-4."
+    "The one who picks the last stick loses.")
 
 while True:
-    print(f"{STICKS} stick(s) are left.")
+    print("{} stick(s) are left.".format(STICKS))
+
     STICKS_CHOSEN = int(input("Enter the number of stick(s) you want to pick: "))
-    if STICKS <= 1:
-        print("Aw, you lose :/")
-        break
-    if STICKS_CHOSEN > 4 or STICKS_CHOSEN < 1:
+    if STICKS_CHOSEN not in range(1,5):
         print("Duh, wrong choice!")
         continue
-    CHOICE = randint(1,4)
-    print(f"Computer chose {CHOICE} stick(s).")
-    STICKS -= (STICKS_CHOSEN + CHOICE)
-    if STICKS <= 1:
+    STICKS -= STICKS_CHOSEN
+    if STICKS < 1:
+        print("Aw, you lose :/")
+        break
+    elif STICKS == 1:
         print("Yay, you won! :D")
+        break
+
+    CHOICE = randint(1,4)
+    print("Computer chose {} stick(s).".format(CHOICE))
+    STICKS -= CHOICE
+    if STICKS < 1:
+        print("Yay, you won! :D")
+        break
+    if STICKS == 1:
+        print("Aw, you lose :/")
         break
